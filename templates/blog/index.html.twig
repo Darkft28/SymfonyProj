@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blog{% endblock %}
+
+{% block body %}
+<div class="blog-wrapper">
+
+    <header class="blog-header">
+        <h1 class="blog-header__title">Blog</h1>
+        <p class="blog-header__subtitle">Articles & publications</p>
+    </header>
+
+    {% if articles is empty %}
+        <div class="blog-empty">
+            <span class="blog-empty__icon" aria-hidden="true">✦</span>
+            <p class="blog-empty__text">Aucun article publié pour le moment.</p>
+        </div>
+    {% else %}
+        <ul class="article-list" role="list">
+            {% for article in articles %}
+                <li>
+                    <article class="article-card">
+
+                        <h2 class="article-card__title">{{ article.title }}</h2>
+
+                        <p class="article-card__meta">
+                            <span class="article-card__author">
+                                {{ article.author.firstName }} {{ article.author.lastName }}
+                            </span>
+                            <time class="article-card__date" datetime="{{ article.publishedAt|date('Y-m-d') }}">
+                                {{ article.publishedAt|date('d/m/Y') }}
+                            </time>
+                            {% if article.category %}
+                                <span class="article-card__category">{{ article.category.name }}</span>
+                            {% endif %}
+                        </p>
+
+                        <p class="article-card__excerpt">{{ article.content|slice(0, 250) }}…</p>
+
+                        <a href="{{ path('blog_show', {id: article.id}) }}" class="article-card__read">Lire l'article →</a>
+
+                    </article>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvel article{% endblock %}
+
+{% block body %}
+<div class="admin-wrapper">
+    <div class="admin-header">
+        <h1 class="admin-header__title">Nouvel article</h1>
+        <a href="{{ path('article_index') }}" class="btn btn--secondary">← Retour</a>
+    </div>
+    <div class="form-wrapper">
+        {{ form(form) }}
+    </div>
+</div>
+{% endblock %}

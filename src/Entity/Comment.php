@@ -26,7 +26,7 @@ class Comment
 
     #[ORM\ManyToOne(targetEntity: Article::class, inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Post $article = null;
+    private ?Article $article = null;
 
     public function getId(): ?int { return $this->id; }
 
@@ -39,6 +39,6 @@ class Comment
     public function getAuthor(): ?User { return $this->author; }
     public function setAuthor(?User $author): static { $this->author = $author; return $this; }
 
-    public function getArticle(): ?Post { return $this->article; }
-    public function setArticle(?Post $article): static { $this->article = $article; return $this; }
+    public function getArticle(): ?Article { return $this->article; }
+    public function setArticle(?Article $article): static { $this->article = $article; return $this; }
 }

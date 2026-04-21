@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block body %}
+<div class="blog-wrapper">
+    <div class="article-show">
+
+        <a href="{{ path('blog_index') }}" class="article-show__back">← Retour au blog</a>
+
+        <article>
+            <h1 class="article-show__title">{{ article.title }}</h1>
+
+            <p class="article-show__meta">
+                <span class="article-show__author">{{ article.author.firstName }} {{ article.author.lastName }}</span>
+                <time class="article-show__date" datetime="{{ article.publishedAt|date('Y-m-d') }}">
+                    {{ article.publishedAt|date('d/m/Y') }}
+                </time>
+                {% if article.category %}
+                    <span class="article-show__category">{{ article.category.name }}</span>
+                {% endif %}
+            </p>
+
+            <p class="article-show__content">{{ article.content }}</p>
+        </article>
+
+    </div>
+</div>
+{% endblock %}
